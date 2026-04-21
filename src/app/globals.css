@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+.dark {
+  --background: #050505;
+  --foreground: #ededed;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #050505;
+    --foreground: #ededed;
+  }
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  }
+  
+  .btn-primary {
+    @apply bg-cosmos-gradient text-white px-6 py-3 rounded-full font-semibold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-cosmos/20;
+  }
+  
+  .btn-secondary {
+    @apply glass text-white px-6 py-3 rounded-full font-semibold transition-all hover:bg-white/10 active:scale-95;
+  }
+
+  .section-padding {
+    @apply py-20 px-6 md:px-12 lg:px-24;
+  }
+
+  .btn-primary-yellow {
+    @apply bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-3 rounded-full font-bold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-yellow-500/20;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-cosmos-gradient bg-clip-text text-transparent;
+  }
+
+  .text-gradient-yellow {
+    @apply bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-500 bg-clip-text text-transparent;
+  }
+
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+}
