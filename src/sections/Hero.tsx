@@ -15,7 +15,7 @@ const Hero = () => {
       setIndex((prev) => (prev + 1) % words.length);
     }, 3000);
     return () => clearInterval(timer);
-  }, []);
+  }, [words.length]);
 
   const containerVariants = {
     hidden: { opacity: 0 },

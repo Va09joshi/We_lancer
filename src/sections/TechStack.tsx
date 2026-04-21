@@ -14,7 +14,13 @@ import {
 } from "lucide-react";
 import Particles from "@/components/Particles";
 
-const technologies = [
+interface Tech {
+  name: string;
+  icon: React.ReactNode;
+  color: string;
+}
+
+const technologies: Tech[] = [
   { name: "React", icon: <Code2 />, color: "#61DAFB" },
   { name: "Next.js", icon: <Layers />, color: "#ffffff" },
   { name: "TypeScript", icon: <Globe />, color: "#3178C6" },
@@ -25,7 +31,7 @@ const technologies = [
   { name: "PostgreSQL", icon: <Database />, color: "#4169E1" },
 ];
 
-const TechCard = ({ tech, index }: { tech: any; index: number }) => {
+const TechCard = ({ tech, index }: { tech: Tech; index: number }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const mouseXSpring = useSpring(x);

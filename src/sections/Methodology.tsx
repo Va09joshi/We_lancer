@@ -58,7 +58,6 @@ const Methodology = () => {
     offset: ["start center", "end center"]
   });
 
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const progressRotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
 
   return (
