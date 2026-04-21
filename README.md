@@ -1,68 +1,63 @@
-<h1 align="center">🚀 we_lancer</h1>
+<h1 align="center">we_lancer</h1>
 
 <p align="center">
-  Modern Company Website for Digital Services <br/>
-  Built with Next.js & TypeScript
+  A modern company website for digital services built with Next.js and TypeScript.
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Next.js-Framework-black?style=for-the-badge&logo=next.js"/>
-  <img src="https://img.shields.io/badge/TypeScript-Language-blue?style=for-the-badge&logo=typescript"/>
-  <img src="https://img.shields.io/badge/TailwindCSS-Styling-38B2AC?style=for-the-badge&logo=tailwind-css"/>
-  <img src="https://img.shields.io/badge/Vercel-Deploy-black?style=for-the-badge&logo=vercel"/>
+  <code>Next.js</code> • <code>TypeScript</code> • <code>Tailwind CSS</code> • <code>Vercel</code>
 </p>
 
 ---
 
-<h2>🌐 Overview</h2>
+<h2>Overview</h2>
 
 <p>
-<strong>we_lancer</strong> is a modern company website designed to help clients connect with a professional development team 
-to build websites, web applications, and digital products.
+we_lancer is a service-based company website built to connect clients with a development team 
+for creating websites, web applications, and digital products.
 </p>
 
 <p>
-It provides a simple and efficient way for users to submit their project requirements and start working with developers.
+It focuses on a clean experience — users can submit their requirements and get started quickly.
 </p>
 
 ---
 
-<h2>💼 What We Do</h2>
+<h2>Services</h2>
 
 <ul>
-  <li>🌍 Build modern and responsive websites</li>
-  <li>💡 Create custom web applications</li>
-  <li>🎨 Design clean and user-friendly UI/UX</li>
-  <li>📩 Collect client project requests easily</li>
+  <li>➤ Custom website development</li>
+  <li>➤ Web application development</li>
+  <li>➤ UI/UX design</li>
+  <li>➤ Client requirement handling</li>
 </ul>
 
 ---
 
-<h2>✨ Features</h2>
+<h2>Features</h2>
 
 <ul>
-  <li>🚀 Professional Landing Page</li>
-  <li>📝 Project Inquiry Form</li>
-  <li>📩 Email Integration</li>
-  <li>🎨 Modern UI with Gradient Design</li>
-  <li>📱 Fully Responsive</li>
-  <li>⚡ Fast & SEO Optimized</li>
+  <li>✓ Modern and clean landing page</li>
+  <li>✓ Simple project inquiry form</li>
+  <li>✓ Email-based client requests</li>
+  <li>✓ Fully responsive layout</li>
+  <li>✓ Optimized performance with Next.js</li>
 </ul>
 
 ---
 
-<h2>🛠️ Tech Stack</h2>
+<h2>Tech Stack</h2>
 
 <ul>
-  <li><strong>Next.js</strong> — React Framework</li>
-  <li><strong>TypeScript</strong> — Type Safety</li>
-  <li><strong>Tailwind CSS</strong> — Styling</li>
-  <li><strong>Vercel</strong> — Deployment</li>
+  <li><code>Next.js</code></li>
+  <li><code>TypeScript</code></li>
+  <li><code>Tailwind CSS</code></li>
+  <li><code>Vercel</code></li>
 </ul>
 
 ---
 
-<h2>🚀 Getting Started</h2>
+<h2>Getting Started</h2>
 
 <pre>
 npm run dev
@@ -70,62 +65,57 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 </pre>
-
-<p>Open <strong>http://localhost:3000</strong> in your browser.</p>
-
----
-
-<h2>📁 Project Structure</h2>
-
-<pre>
-/app        → Pages & routing
-/components → Reusable UI components
-/public     → Static assets
-/styles     → Global styles
-</pre>
-
----
-
-<h2>🎯 Use Cases</h2>
-
-<ul>
-  <li>Company / Agency Website</li>
-  <li>Freelance Team Platform</li>
-  <li>Client Lead Generation</li>
-  <li>Startup Service Website</li>
-</ul>
-
----
-
-<h2>🚧 Future Improvements</h2>
-
-<ul>
-  <li>🔐 Authentication System</li>
-  <li>📊 Client Dashboard</li>
-  <li>💬 Live Chat Feature</li>
-  <li>💳 Payment Integration</li>
-</ul>
-
----
-
-<h2>🌍 Deployment</h2>
-
-<p>Deploy easily using <strong>Vercel</strong> for best performance.</p>
-
----
-
-<h2>💡 Vision</h2>
 
 <p>
-The goal of <strong>we_lancer</strong> is to create a simple bridge between clients and developers, 
-making it easy to turn ideas into real digital products.
+Open <code>http://localhost:3000</code> in your browser.
 </p>
 
 ---
 
-<p align="center">
-  ⭐ If you like this project, give it a star!
+<h2>Project Structure</h2>
+
+<pre>
+/app        → Application pages  
+/components → Reusable components  
+/public     → Static assets  
+/styles     → Global styles  
+</pre>
+
+---
+
+<h2>Use Cases</h2>
+
+<ul>
+  <li>➤ Company or agency website</li>
+  <li>➤ Freelance team platform</li>
+  <li>➤ Client lead generation</li>
+  <li>➤ Startup service website</li>
+</ul>
+
+---
+
+<h2>Future Scope</h2>
+
+<ul>
+  <li>➤ Client dashboard</li>
+  <li>➤ Authentication system</li>
+  <li>➤ Project tracking</li>
+  <li>➤ Payment integration</li>
+</ul>
+
+---
+
+<h2>Deployment</h2>
+
+<p>
+Deploy easily using <code>Vercel</code>.
+</p>
+
+---
+
+<h2>Vision</h2>
+
+<p>
+we_lancer aims to simplify how clients and developers connect, making it easier to turn ideas into real products.
 </p>
