@@ -1,22 +1,21 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { 
-  Zap, 
-  Target, 
-  Lightbulb, 
-  MessageSquare, 
-  DollarSign, 
-  CheckCircle2 
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import {
+  Zap,
+  Target,
+  Lightbulb,
+  MessageSquare,
+  DollarSign,
+  CheckCircle2
 } from "lucide-react";
-import Particles from "@/components/Particles";
 
 const stats = [
-  { value: "350+", label: "Projects Successfully Delivered" },
-  { value: "150+", label: "Global Clients" },
-  { value: "40+", label: "Skilled Freelancers" },
-  { value: "98%", label: "Client Satisfaction Rate" },
+  { value: 350, suffix: "+", label: "Projects Successfully Delivered" },
+  { value: 150, suffix: "+", label: "Global Clients" },
+  { value: 40, suffix: "+", label: "Skilled Freelancers" },
+  { value: 98, suffix: "%", label: "Client Satisfaction Rate" },
 ];
 
 const values = [
@@ -42,64 +41,95 @@ const values = [
   }
 ];
 
+// Counting animation component
+function CountUp({ target, suffix, duration = 2 }: { target: number; suffix: string; duration?: number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let start = 0;
+    const end = target;
+    const totalFrames = Math.round(duration * 60);
+    const increment = end / totalFrames;
+    let frame = 0;
+
+    const timer = setInterval(() => {
+      frame++;
+      start += increment;
+      if (frame >= totalFrames) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 1000 / 60);
+
+    return () => clearInterval(timer);
+  }, [isInView, target, duration]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+}
+
 const WhyUs = () => {
   return (
-    <section id="why-us" className="section-padding bg-[#000000] relative overflow-hidden">
-      <Particles quantity={50} color="#0B8F6C" />
-      {/* Fading Grid Background */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none" 
-           style={{ 
-             backgroundImage: `linear-gradient(to bottom, transparent, #000000), linear-gradient(to right, #ffffff05 1px, transparent 1px), linear-gradient(to bottom, #ffffff05 1px, transparent 1px)`,
-             backgroundSize: '100% 100%, 40px 40px, 40px 40px' 
-           }} 
+    <section id="why-us" className="section-padding bg-white relative overflow-hidden">
+      {/* Subtle Grid Background for white */}
+      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: `linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }}
       />
 
-      {/* Animated Background Elements */}
+      {/* Animated Background Elements - softer for white bg */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{
             scale: [1, 1.4, 1],
-            opacity: [0.1, 0.2, 0.1],
+            opacity: [0.04, 0.08, 0.04],
             x: [0, 100, 0],
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-cosmos/10 rounded-full blur-[120px]"
+          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-cosmos/20 rounded-full blur-[120px]"
         />
         <motion.div
           animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.05, 0.1, 0.05],
+            opacity: [0.03, 0.06, 0.03],
             y: [0, -50, 0],
           }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cosmos-light/5 rounded-full blur-[100px]"
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cosmos-light/10 rounded-full blur-[100px]"
         />
       </div>
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-20">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cosmos/30 text-cosmos-light text-[10px] font-bold uppercase tracking-[0.2em] mb-6 mx-auto"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cosmos/30 bg-cosmos/5 text-cosmos text-[10px] font-bold uppercase tracking-[0.2em] mb-6 mx-auto"
           >
             WHY US
           </motion.div>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-7xl font-bold mb-8 tracking-tighter leading-tight"
+            className="text-4xl md:text-7xl font-bold mb-8 tracking-tighter leading-tight text-gray-900"
           >
             Why <span className="text-gradient">we_lancer</span>?
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-gray-400 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
+            className="text-gray-500 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
           >
             We don&apos;t just build projects — we build digital experiences that convert, scale, and stand out. At we_lancer, we combine creative design, powerful development, and smart strategy to turn your ideas into real, revenue-generating products.
           </motion.p>
@@ -112,12 +142,15 @@ const WhyUs = () => {
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -8, scale: 1.02 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass p-8 rounded-[2rem] text-center group hover:bg-white/5 transition-all border-white/5 hover:border-cosmos/20"
+              className="p-8 rounded-[2rem] text-center group bg-white border border-gray-100 shadow-md shadow-gray-200/60 hover:border-cosmos/30 hover:shadow-xl hover:shadow-cosmos/10 transition-shadow transition-colors duration-300 cursor-pointer"
             >
-              <p className="text-4xl md:text-5xl font-extrabold text-white mb-2 group-hover:text-cosmos-light transition-colors tracking-tighter">{stat.value}</p>
-              <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold leading-tight">{stat.label}</p>
+              <p className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-2 group-hover:text-cosmos transition-colors tracking-tighter">
+                <CountUp target={stat.value} suffix={stat.suffix} />
+              </p>
+              <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold leading-tight">{stat.label}</p>
             </motion.div>
           ))}
         </div>
@@ -130,15 +163,16 @@ const WhyUs = () => {
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -8, scale: 1.02 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="glass p-10 rounded-[2.5rem] hover:bg-white/5 transition-all group border-white/5 hover:border-cosmos/20"
+                className="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-md shadow-gray-200/60 hover:border-cosmos/30 hover:shadow-xl hover:shadow-cosmos/10 transition-shadow transition-colors duration-300 group cursor-pointer"
               >
                 <div className="w-16 h-16 bg-cosmos/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-cosmos group-hover:text-white transition-all duration-300">
                   {v.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-white tracking-tight">{v.title}</h3>
-                <p className="text-gray-400 leading-relaxed text-base opacity-80">{v.desc}</p>
+                <h3 className="text-2xl font-bold mb-4 text-gray-900 tracking-tight">{v.title}</h3>
+                <p className="text-gray-500 leading-relaxed text-base">{v.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -147,28 +181,29 @@ const WhyUs = () => {
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
+              whileHover={{ y: -8, scale: 1.02 }}
               viewport={{ once: true }}
-              className="h-full glass p-10 md:p-12 rounded-[2.5rem] border-cosmos/20 bg-gradient-to-br from-cosmos/10 to-transparent relative overflow-hidden group shadow-2xl shadow-cosmos/5"
+              className="h-full p-10 md:p-12 rounded-[2.5rem] border border-cosmos/20 bg-gradient-to-br from-cosmos/5 to-cosmos/[0.02] relative overflow-hidden group shadow-lg shadow-cosmos/10 hover:shadow-xl hover:shadow-cosmos/15 transition-shadow transition-colors duration-300 cursor-pointer"
             >
               <div className="relative z-10">
-                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-10 text-cosmos-light group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 bg-cosmos/10 rounded-full flex items-center justify-center mb-10 text-cosmos group-hover:scale-110 transition-transform">
                   <DollarSign size={32} />
                 </div>
-                <span className="text-[11px] font-bold text-cosmos-light uppercase tracking-[0.2em] mb-6 block">FEATURE HIGHLIGHT</span>
-                <h3 className="text-3xl md:text-4xl font-bold mb-8 text-white leading-tight tracking-tighter">Transparent Pricing</h3>
+                <span className="text-[11px] font-bold text-cosmos uppercase tracking-[0.2em] mb-6 block">FEATURE HIGHLIGHT</span>
+                <h3 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900 leading-tight tracking-tighter">Transparent Pricing</h3>
                 <div className="space-y-6 mb-10">
                   <div className="flex items-start gap-4">
-                    <CheckCircle2 size={22} className="text-cosmos-light mt-1 shrink-0" />
-                    <p className="text-gray-300 text-base italic leading-relaxed">&quot;No hidden costs. No surprises.&quot;</p>
+                    <CheckCircle2 size={22} className="text-cosmos mt-1 shrink-0" />
+                    <p className="text-gray-600 text-base italic leading-relaxed">&quot;No hidden costs. No surprises.&quot;</p>
                   </div>
                 </div>
-                <p className="text-gray-400 text-base leading-relaxed">
+                <p className="text-gray-500 text-base leading-relaxed">
                   Just clear, honest pricing that helps you plan better and grow faster.
                 </p>
               </div>
 
               {/* Decorative Circle */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cosmos/20 rounded-full blur-[100px] z-0 opacity-50 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cosmos/10 rounded-full blur-[100px] z-0 opacity-50 group-hover:opacity-100 transition-opacity" />
             </motion.div>
           </div>
         </div>

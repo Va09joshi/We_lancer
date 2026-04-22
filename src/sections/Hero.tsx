@@ -38,7 +38,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-[#000000]">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(135deg, #021a0f 0%, #000000 40%, #031c12 70%, #000000 100%)' }}>
       {/* Dynamic Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.div
@@ -132,9 +132,18 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Modern Grid Overlay */}
-      <div className="absolute inset-0 z-[-1] opacity-[0.05]" 
-           style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #fff 1px, transparent 0)', backgroundSize: '40px 40px' }} 
+      {/* Visible Grid Overlay */}
+      <div className="absolute inset-0 z-[1] pointer-events-none" 
+           style={{ 
+             backgroundImage: `linear-gradient(to right, rgba(11,143,108,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(11,143,108,0.12) 1px, transparent 1px)`,
+             backgroundSize: '60px 60px' 
+           }} 
+      />
+      {/* Grid Radial Fade - fades edges */}
+      <div className="absolute inset-0 z-[2] pointer-events-none" 
+           style={{ 
+             background: 'radial-gradient(ellipse at center, transparent 30%, #000000 80%)' 
+           }} 
       />
     </section>
   );

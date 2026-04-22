@@ -9,6 +9,7 @@ import FAQ from "@/sections/FAQ";
 import Testimonials from "@/sections/Testimonials";
 import Contact from "@/sections/Contact";
 import SocialFeed from "@/sections/SocialFeed";
+import HireFreelancer from "@/sections/HireFreelancer";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
       <div className="bg-white">
         <FAQ />
         <Testimonials />
+        <HireFreelancer />
       </div>
       <Contact />
       <Footer />

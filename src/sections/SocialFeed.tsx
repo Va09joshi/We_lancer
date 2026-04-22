@@ -45,9 +45,9 @@ const posts = [
 
 const SocialFeed = () => {
   return (
-    <section className="section-padding bg-[#FAFAFA] overflow-hidden">
+    <section className="py-12 px-6 md:px-12 lg:px-24 bg-[#FAFAFA] overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <motion.a
             href="https://www.instagram.com/we_lancer/"
             target="_blank"
@@ -60,15 +60,15 @@ const SocialFeed = () => {
             <Instagram size={20} />
             Connect With Us
           </motion.a>
-          <h2 className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tighter mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tighter mb-4">
             Latest from <span className="text-gradient">Our Lab</span>
           </h2>
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto font-medium">
+          <p className="text-slate-500 text-base max-w-2xl mx-auto font-medium">
             Follow our journey as we build, launch, and scale digital products for brands worldwide.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post, index) => (
             <motion.div
               key={post.id}
@@ -76,17 +76,16 @@ const SocialFeed = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500 max-w-[470px] mx-auto w-full"
+              className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500 max-w-[360px] mx-auto w-full"
             >
-              {/* Post Header */}
-              <div className="flex items-center justify-between p-4">
+              <div className="flex items-center justify-between p-3">
                 <a 
                   href="https://www.instagram.com/we_lancer/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 group"
                 >
-                  <div className="w-10 h-10 relative rounded-full overflow-hidden border border-slate-100 shadow-sm group-hover:ring-2 group-hover:ring-pink-500 transition-all">
+                  <div className="w-8 h-8 relative rounded-full overflow-hidden border border-slate-100 shadow-sm group-hover:ring-2 group-hover:ring-pink-500 transition-all">
                     <Image src={post.avatar} alt={post.user} fill className="object-cover" />
                   </div>
                   <div>
@@ -125,30 +124,29 @@ const SocialFeed = () => {
                 <Image src={post.image} alt="Post content" fill className="object-cover" />
               </div>
 
-              {/* Post Actions */}
-              <div className="p-4">
-                <div className="flex items-center justify-between mb-4">
+              <div className="p-3">
+                <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-4">
                     <button className="text-slate-900 hover:text-pink-600 transition-colors">
-                      <Heart size={24} />
+                      <Heart size={20} />
                     </button>
                     <button className="text-slate-900 hover:text-slate-500 transition-colors">
-                      <MessageCircle size={24} />
+                      <MessageCircle size={20} />
                     </button>
                     <button className="text-slate-900 hover:text-slate-500 transition-colors">
-                      <Send size={24} />
+                      <Send size={20} />
                     </button>
                   </div>
                   <button className="text-slate-900 hover:text-slate-500 transition-colors">
-                    <Bookmark size={24} />
+                    <Bookmark size={20} />
                   </button>
                 </div>
 
                 {/* Likes */}
-                <p className="text-sm font-bold text-slate-900 mb-2">{post.likes} likes</p>
+                <p className="text-xs font-bold text-slate-900 mb-1">{post.likes} likes</p>
 
                 {/* Caption */}
-                <div className="text-sm text-slate-800 leading-snug mb-3">
+                <div className="text-xs text-slate-800 leading-snug mb-2">
                   <span className="font-bold mr-2">{post.user}</span>
                   {post.caption}
                 </div>
@@ -160,11 +158,11 @@ const SocialFeed = () => {
               </div>
 
               {/* Comment Input Simulation */}
-              <div className="border-t border-slate-100 p-4 flex items-center justify-between">
+              <div className="border-t border-slate-100 p-3 flex items-center justify-between">
                 <input 
                   type="text" 
                   placeholder="Add a comment..." 
-                  className="text-sm w-full bg-transparent focus:outline-none text-slate-800"
+                  className="text-xs w-full bg-transparent focus:outline-none text-slate-800"
                 />
                 <button className="text-sm font-bold text-blue-500 hover:text-blue-700 transition-colors opacity-50">Post</button>
               </div>

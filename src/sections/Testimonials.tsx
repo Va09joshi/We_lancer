@@ -56,7 +56,9 @@ const Testimonials = () => {
                 &quot;{t.text}&quot;
               </p>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-slate-100 rounded-full" />
+                <div className="w-12 h-12 bg-gradient-to-br from-cosmos to-[#043d2c] text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg shadow-cosmos/20 flex-shrink-0">
+                  {t.name.split(' ').map((n) => n[0]).join('')}
+                </div>
                 <div>
                   <h4 className="font-bold text-slate-900">{t.name}</h4>
                   <p className="text-sm text-slate-400 font-medium">{t.role}</p>
