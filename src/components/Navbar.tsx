@@ -19,8 +19,9 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Services", href: "#services" },
+    { name: "Methodology", href: "#methodology" },
+    { name: "Why Us", href: "#why-us" },
     { name: "Portfolio", href: "#portfolio" },
-    { name: "About", href: "#about" },
     { name: "Testimonials", href: "#testimonials" },
   ];
 
@@ -28,11 +29,19 @@ const Navbar = () => {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4",
-        isScrolled ? "bg-black/60 backdrop-blur-xl border-b border-white/10" : "bg-transparent"
+        (isScrolled || isMobileMenuOpen)
+          ? "bg-white/80 backdrop-blur-xl border-b border-[#dddfe9]"
+          : "bg-transparent"
       )}
+      style={isScrolled || isMobileMenuOpen ? { boxShadow: "rgba(32, 41, 76, 0.04) 0px 4px 20px 0px" } : {}}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className="text-2xl font-bold text-gradient">
+        {/* Logo */}
+        <Link
+          href="#hero"
+          className="text-xl font-black text-gradient tracking-tight"
+          style={{ letterSpacing: "-0.03em" }}
+        >
           we_lancer
         </Link>
 
@@ -42,33 +51,41 @@ const Navbar = () => {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-gray-300 hover:text-cosmos-light transition-colors"
+              className="text-sm font-bold text-[#676b89] hover:text-[#20294c] transition-colors"
             >
               {link.name}
             </Link>
           ))}
-          <Link href="#contact" className="btn-primary py-2 px-6">
+          <Link href="#contact" className="btn-primary py-2 px-6 text-sm">
             Get Quote
           </Link>
         </div>
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-[#20294c]"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X /> : <Menu />}
+          {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-2xl border-b border-white/10 p-6 flex flex-col space-y-4 animate-in slide-in-from-top duration-300">
+        <div
+          className="md:hidden absolute top-full left-0 right-0 p-6 flex flex-col space-y-4"
+          style={{
+            background: "rgba(255,255,255,0.98)",
+            backdropFilter: "blur(20px)",
+            borderBottom: "1px solid #eef0f6",
+            boxShadow: "rgba(32, 41, 76, 0.04) 0px 10px 30px 0px",
+          }}
+        >
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-lg font-medium text-gray-300"
+              className="text-base font-bold text-[#20294c] hover:text-[#459af8] transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.name}
@@ -76,7 +93,7 @@ const Navbar = () => {
           ))}
           <Link
             href="#contact"
-            className="btn-primary text-center"
+            className="btn-primary text-center text-sm"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Get Quote

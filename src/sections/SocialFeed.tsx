@@ -72,10 +72,20 @@ const SocialFeed = () => {
           {posts.map((post, index) => (
             <motion.div
               key={post.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              initial={{ 
+                opacity: 0, 
+                x: index === 0 ? -100 : index === 2 ? 100 : 0,
+                y: index === 1 ? 100 : 20 
+              }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ 
+                duration: 0.8, 
+                delay: index * 0.15, 
+                type: "spring", 
+                stiffness: 80,
+                damping: 20
+              }}
               className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500 max-w-[360px] mx-auto w-full"
             >
               <div className="flex items-center justify-between p-3">

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Particles from "@/components/Particles";
 
@@ -39,19 +39,19 @@ const faqs = [
 
 const FAQItem = ({ question, answer, isOpen, onClick }: { question: string, answer: string, isOpen: boolean, onClick: () => void }) => {
   return (
-    <div className="border-b border-slate-100 last:border-0 overflow-hidden">
+    <div className="border-b border-[#eef0f6] last:border-0 overflow-hidden">
       <button
         onClick={onClick}
-        className="w-full py-8 flex items-center justify-between text-left group"
+        className="w-full py-7 flex items-center justify-between text-left group"
       >
-        <span className={`text-lg font-bold transition-colors ${isOpen ? 'text-cosmos' : 'text-slate-900 group-hover:text-cosmos'}`}>
+        <span className={`text-lg font-black transition-colors tracking-tight ${isOpen ? 'text-[#459af8]' : 'text-[#20294c] group-hover:text-[#459af8]'}`}>
           {question}
         </span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
-          className={`transition-colors ${isOpen ? 'text-cosmos' : 'text-slate-400'}`}
+          className={`transition-colors ${isOpen ? 'text-[#459af8]' : 'text-[#979db5]'}`}
         >
-          <ChevronDown size={24} />
+          <ChevronDown size={20} strokeWidth={3} />
         </motion.div>
       </button>
       <AnimatePresence>
@@ -62,7 +62,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }: { question: string, answ
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="pb-8 text-slate-500 leading-relaxed text-lg">
+            <div className="pb-7 text-[#676b89] leading-relaxed text-base font-medium">
               {answer}
             </div>
           </motion.div>
@@ -76,17 +76,34 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="section-padding bg-white relative overflow-hidden">
-      <Particles quantity={30} color="#0B8F6C" />
-      <div className="max-w-4xl mx-auto relative z-10">
+    <section id="faq" className="py-32 md:py-40 bg-white relative overflow-hidden">
+      <Particles quantity={35} color="#459af8" />
+      <div className="max-w-4xl mx-auto relative z-10 px-6">
+        
+        {/* Monologue Brand Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold mb-4 text-slate-900 tracking-tight">Frequently Asked Questions</h2>
-          <div className="w-20 h-1.5 bg-cosmos/10 mx-auto rounded-full mt-6">
-            <div className="w-1/2 h-full bg-cosmos rounded-full" />
-          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="mb-6 flex justify-center"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f8f9fc] border border-[#f0f1f5] text-[#20294c] text-[10px] font-black uppercase tracking-widest shadow-sm">
+              05 / FREQUENTLY ASKED QUESTIONS
+            </span>
+          </motion.div>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-6xl font-black text-[#20294c] tracking-tighter leading-[0.95]"
+          >
+            Frequently Asked Questions
+          </motion.h2>
         </div>
 
-        <div className="mb-16">
+        <div className="mb-16 bg-white border border-[#eef0f6] rounded-[2rem] p-8 md:p-12 shadow-[0_15px_50px_rgba(32,41,76,0.02)]">
           {faqs.map((faq, index) => (
             <FAQItem
               key={index}
@@ -101,9 +118,10 @@ const FAQ = () => {
         <div className="text-center">
           <Link 
             href="#contact" 
-            className="btn-primary inline-flex items-center gap-2"
+            className="btn-primary inline-flex items-center gap-3 text-sm group"
           >
-            More Questions? Contact Us <ChevronDown size={18} className="-rotate-90" />
+            More Questions? Contact Us 
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </div>

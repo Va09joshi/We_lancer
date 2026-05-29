@@ -3,20 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ffffff; /* Canvas White */
+  --foreground: #20294c; /* Midnight Ink */
 }
 
-.dark {
-  --background: #050505;
-  --foreground: #ededed;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #050505;
-    --foreground: #ededed;
-  }
+/* Force light mode — Fold is strictly light */
+html {
+  color-scheme: light;
 }
 
 * {
@@ -26,43 +19,92 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-satoshi), system-ui, sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-satoshi), system-ui, sans-serif;
+  letter-spacing: -0.03em;
+  color: #20294c;
 }
 
 @layer components {
+  /* Fold glass — softly lit surface with floating shadow */
   .glass {
-    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+    @apply bg-white/80 backdrop-blur-xl border border-[#c7cbdb]/40;
+    box-shadow: rgba(32, 41, 76, 0.07) 0px 4px 11px 0px, rgba(32, 41, 76, 0.12) 0px 1px 3px 0px;
   }
-  
+
+  /* Primary CTA — Active Blue, pill shape */
   .btn-primary {
-    @apply bg-cosmos-gradient text-white px-6 py-3 rounded-full font-semibold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-cosmos/20;
+    @apply bg-[#459af8] text-white px-8 py-3 rounded-full font-semibold transition-all hover:bg-[#2a87f5] hover:scale-[1.02] active:translate-y-[1px] active:scale-[0.98];
+    border: 1px solid #375390;
+    box-shadow: rgba(32, 41, 76, 0.1) 0px 1px 4px 0px;
   }
-  
+
+  /* Secondary ghost button — Midnight Ink, transparent */
   .btn-secondary {
-    @apply glass text-white px-6 py-3 rounded-full font-semibold transition-all hover:bg-white/10 active:scale-95;
+    @apply bg-transparent text-[#20294c] border border-[#375390] px-8 py-3 rounded-full font-semibold transition-all hover:bg-[#f0f1f5] active:translate-y-[1px] active:scale-[0.98];
   }
 
+  /* Pill tag — Whisper Gray surface */
+  .btn-pill {
+    @apply bg-[#f0f1f5] text-[#20294c] border border-[#788dba] px-3 py-2 rounded-full text-sm font-medium transition-all hover:bg-[#c7cbdb]/40;
+  }
+
+  /* Subtle pill — near-white */
+  .btn-pill-subtle {
+    @apply bg-[#fafafa] text-[#20294c] px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-[#f0f1f5];
+    border: 1px solid rgba(120, 141, 186, 0.5);
+  }
+
+  /* Section padding */
   .section-padding {
-    @apply py-20 px-6 md:px-12 lg:px-24;
+    @apply py-24 px-6 md:px-12 lg:px-24;
   }
 
-  .btn-primary-yellow {
-    @apply bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-3 rounded-full font-bold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-yellow-500/20;
+  /* Light Card — Canvas White + soft cool shadow */
+  .fold-card {
+    @apply bg-white rounded-[12px] p-4;
+    box-shadow: rgba(32, 41, 76, 0.12) 0px 9px 25px 0px;
+  }
+
+  /* Whisper Card — elevated gray container */
+  .fold-whisper-card {
+    @apply bg-[#f0f1f5] rounded-[20px] p-0;
+  }
+
+  /* Blank large container card */
+  .fold-container {
+    @apply bg-white rounded-[24px] p-0;
+    box-shadow: rgba(32, 41, 76, 0.12) 0px 9px 25px 0px;
+  }
+
+  /* Yellow gold callout */
+  .fold-gold-card {
+    @apply bg-[#ffff00] rounded-[12px] p-4;
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-cosmos-gradient bg-clip-text text-transparent;
+    @apply bg-[linear-gradient(135deg,#375390,#459af8)] bg-clip-text text-transparent;
   }
 
-  .text-gradient-yellow {
-    @apply bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-500 bg-clip-text text-transparent;
+  .text-gradient-blue {
+    @apply bg-[linear-gradient(135deg,#459af8,#375390)] bg-clip-text text-transparent;
   }
 
   .vertical-text {
     writing-mode: vertical-rl;
     text-orientation: mixed;
   }
+
+  /* Fold section divider */
+  .fold-divider {
+    @apply border-t border-[#dddfe9];
+  }
 }
+

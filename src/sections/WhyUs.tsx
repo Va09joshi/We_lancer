@@ -1,212 +1,276 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import {
   Zap,
   Target,
   Lightbulb,
   MessageSquare,
-  DollarSign,
-  CheckCircle2
+  ArrowRight,
 } from "lucide-react";
 
 const stats = [
-  { value: 350, suffix: "+", label: "Projects Successfully Delivered" },
-  { value: 150, suffix: "+", label: "Global Clients" },
-  { value: 40, suffix: "+", label: "Skilled Freelancers" },
-  { value: 98, suffix: "%", label: "Client Satisfaction Rate" },
+  { value: 350, suffix: "+", label: "DELIVERED SYSTEMS" },
+  { value: 150, suffix: "+", label: "GLOBAL CLIENTS" },
+  { value: 40, suffix: "+", label: "ENGINEERS & DESIGNERS" },
+  { value: 98, suffix: "%", label: "SATISFACTION INDEX" },
 ];
 
 const values = [
   {
-    icon: <Zap className="text-cosmos-light" />,
-    title: "Fast & Reliable Delivery",
-    desc: "We respect deadlines like professionals. Get your projects delivered on time without compromising quality."
+    Icon: Zap,
+    tag: "01 / VELOCITY",
+    title: "Committed Delivery Speed",
+    desc: "Strict adherence to agreed milestones. We treat engineering deadlines as professional commitments.",
   },
   {
-    icon: <Target className="text-cosmos-light" />,
-    title: "Tailored Solutions",
-    desc: "Every business is unique — we craft solutions specifically designed for your goals and audience."
+    Icon: Target,
+    tag: "02 / ARCHITECTURE",
+    title: "Asymmetric Tailored Fits",
+    desc: "We reject template-based engineering. Every layout, route, and data-flow is customized exactly for your goals.",
   },
   {
-    icon: <Lightbulb className="text-cosmos-light" />,
-    title: "Creative + Technical Expertise",
-    desc: "From UI/UX design to full-stack development, we blend creativity with technology seamlessly."
+    Icon: Lightbulb,
+    tag: "03 / INTEGRITY",
+    title: "Double-Helix Competence",
+    desc: "Equal mastery over physical visual taste (design systems) and high-performance system engineering (Edge deployment).",
   },
   {
-    icon: <MessageSquare className="text-cosmos-light" />,
-    title: "Transparent Communication",
-    desc: "Stay updated at every step with clear communication and zero confusion."
-  }
+    Icon: MessageSquare,
+    tag: "04 / SYNERGY",
+    title: "High-Agency Communication",
+    desc: "Direct access to lead builders. Zero telephone game, regular asynchronous updates, and absolute transparency.",
+  },
 ];
 
-// Counting animation component
-function CountUp({ target, suffix, duration = 2 }: { target: number; suffix: string; duration?: number }) {
+function CountUp({ target, suffix, duration = 1.5 }: { target: number; suffix: string; duration?: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
     if (!isInView) return;
-
     let start = 0;
-    const end = target;
     const totalFrames = Math.round(duration * 60);
-    const increment = end / totalFrames;
+    const increment = target / totalFrames;
     let frame = 0;
-
     const timer = setInterval(() => {
       frame++;
       start += increment;
       if (frame >= totalFrames) {
-        setCount(end);
+        setCount(target);
         clearInterval(timer);
       } else {
         setCount(Math.floor(start));
       }
     }, 1000 / 60);
-
     return () => clearInterval(timer);
   }, [isInView, target, duration]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
+  return (
+    <span ref={ref} className="font-mono tracking-tighter">
+      {count}{suffix}
+    </span>
+  );
 }
 
 const WhyUs = () => {
   return (
-    <section id="why-us" className="section-padding bg-white relative overflow-hidden">
-      {/* Subtle Grid Background for white */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)`,
-          backgroundSize: '40px 40px'
-        }}
-      />
-
-      {/* Animated Background Elements - softer for white bg */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            scale: [1, 1.4, 1],
-            opacity: [0.04, 0.08, 0.04],
-            x: [0, 100, 0],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-cosmos/20 rounded-full blur-[120px]"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.03, 0.06, 0.03],
-            y: [0, -50, 0],
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cosmos-light/10 rounded-full blur-[100px]"
-        />
+    <section id="why-us" className="bg-[#f8f9fc] relative overflow-hidden">
+      {/* Dark Top Half */}
+      <div className="bg-[#20294c] pt-32 pb-48 md:pb-64 px-6 relative z-0">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="max-w-4xl">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="mb-8 w-fit"
+            >
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-[10px] font-black uppercase tracking-widest">
+                OPERATIONAL STATEMENT
+              </span>
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[0.95] tracking-tighter mb-8"
+              style={{ letterSpacing: "-0.04em" }}
+            >
+              Why we are chosen <br />
+              to build the exceptional.
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-slate-300 text-lg md:text-xl leading-relaxed font-medium max-w-lg"
+            >
+              We operate as high-agency execution partners to ship robust digital products that actually convert, perform, and scale.
+            </motion.p>
+          </div>
+        </div>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cosmos/30 bg-cosmos/5 text-cosmos text-[10px] font-bold uppercase tracking-[0.2em] mb-6 mx-auto"
-          >
-            WHY US
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-7xl font-bold mb-8 tracking-tighter leading-tight text-gray-900"
-          >
-            Why <span className="text-gradient">we_lancer</span>?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-gray-500 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
-          >
-            We don&apos;t just build projects — we build digital experiences that convert, scale, and stand out. At we_lancer, we combine creative design, powerful development, and smart strategy to turn your ideas into real, revenue-generating products.
-          </motion.p>
-        </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-20">
+      {/* Floating Overlapping Content */}
+      <div className="max-w-7xl mx-auto px-6 relative z-10 -mt-24 md:-mt-40 mb-24">
+        {/* Stats Row - Floating Card */}
+        <div className="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_60px_rgba(32,41,76,0.12)] border border-[#f0f1f5] grid grid-cols-2 lg:grid-cols-4 gap-y-12">
           {stats.map((stat, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -8, scale: 1.02 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="p-8 rounded-[2rem] text-center group bg-white border border-gray-100 shadow-md shadow-gray-200/60 hover:border-cosmos/30 hover:shadow-xl hover:shadow-cosmos/10 transition-shadow transition-colors duration-300 cursor-pointer"
+              transition={{ delay: i * 0.05 }}
+              className={`text-center lg:text-left ${i !== 0 ? "lg:border-l lg:border-[#dddfe9] lg:pl-10" : ""}`}
             >
-              <p className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-2 group-hover:text-cosmos transition-colors tracking-tighter">
+              <p
+                className="text-4xl md:text-6xl font-black text-[#20294c] mb-3"
+                style={{ letterSpacing: "-0.04em" }}
+              >
                 <CountUp target={stat.value} suffix={stat.suffix} />
               </p>
-              <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold leading-tight">{stat.label}</p>
+              <p className="text-[9px] font-mono text-[#979db5] tracking-widest font-black uppercase">
+                {stat.label}
+              </p>
             </motion.div>
           ))}
         </div>
+      </div>
 
-        {/* Value Cards and Feature Highlight */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Values Grid */}
+      <div className="max-w-7xl mx-auto px-6 relative z-10 pb-24">
+
+        {/* Values Grid + Highlight Card */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+          {/* Value Bento Panel (Unified professional card container with internal thin border dividers) */}
+          <div className="lg:col-span-8 bg-white border border-[#eef0f6] rounded-[32px] shadow-[0_20px_50px_rgba(32,41,76,0.03)] grid grid-cols-1 md:grid-cols-2 overflow-hidden h-fit">
             {values.map((v, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-md shadow-gray-200/60 hover:border-cosmos/30 hover:shadow-xl hover:shadow-cosmos/10 transition-shadow transition-colors duration-300 group cursor-pointer"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: i * 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
+                className={`group cursor-pointer p-8 lg:p-10 flex flex-col justify-start transition-all duration-300 hover:bg-[#459af8]/[0.01] ${
+                  i === 0 ? "border-b md:border-r border-[#eef0f6]" :
+                  i === 1 ? "border-b border-[#eef0f6]" :
+                  i === 2 ? "border-b md:border-b-0 md:border-r border-[#eef0f6]" :
+                  "border-[#eef0f6]"
+                }`}
               >
-                <div className="w-16 h-16 bg-cosmos/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-cosmos group-hover:text-white transition-all duration-300">
-                  {v.icon}
+                {/* Monospace monoline badge index */}
+                <span className="font-mono text-[9px] font-black text-[#979db5] tracking-widest mb-5 block">
+                  {v.tag}
+                </span>
+
+                {/* Blueprint rounded icon */}
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-6 transition-all duration-300 bg-[#f8f9fc] border border-[#f0f1f5] group-hover:bg-[#459af8] group-hover:border-[#459af8] group-hover:shadow-[0_8px_20px_rgba(69,154,248,0.2)]"
+                >
+                  <v.Icon className="text-[#459af8] group-hover:text-white transition-colors duration-300" size={18} />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-gray-900 tracking-tight">{v.title}</h3>
-                <p className="text-gray-500 leading-relaxed text-base">{v.desc}</p>
+
+                <div>
+                  <h3
+                    className="text-lg font-black text-[#20294c] mb-3 transition-colors duration-300 group-hover:text-[#459af8] tracking-tight"
+                  >
+                    {v.title}
+                  </h3>
+                  <p className="text-[#676b89] leading-relaxed text-sm font-medium">{v.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
 
-          <div className="lg:col-span-4">
+          {/* UI Mockup Highlight Card */}
+          <div className="lg:col-span-4 h-full relative">
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              viewport={{ once: true }}
-              className="h-full p-10 md:p-12 rounded-[2.5rem] border border-cosmos/20 bg-gradient-to-br from-cosmos/5 to-cosmos/[0.02] relative overflow-hidden group shadow-lg shadow-cosmos/10 hover:shadow-xl hover:shadow-cosmos/15 transition-shadow transition-colors duration-300 cursor-pointer"
+              initial={{ opacity: 0, scale: 0.95, x: 20 }}
+              whileInView={{ opacity: 1, scale: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="h-full flex flex-col bg-white border border-[#f0f1f5] rounded-[24px] shadow-[0_20px_60px_rgba(32,41,76,0.08)] relative overflow-hidden group"
             >
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-cosmos/10 rounded-full flex items-center justify-center mb-10 text-cosmos group-hover:scale-110 transition-transform">
-                  <DollarSign size={32} />
+              {/* Browser/App Header */}
+              <div className="px-6 py-4 border-b border-[#f0f1f5] flex items-center justify-between bg-[#f8f9fc]">
+                <div className="flex gap-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
                 </div>
-                <span className="text-[11px] font-bold text-cosmos uppercase tracking-[0.2em] mb-6 block">FEATURE HIGHLIGHT</span>
-                <h3 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900 leading-tight tracking-tighter">Transparent Pricing</h3>
-                <div className="space-y-6 mb-10">
-                  <div className="flex items-start gap-4">
-                    <CheckCircle2 size={22} className="text-cosmos mt-1 shrink-0" />
-                    <p className="text-gray-600 text-base italic leading-relaxed">&quot;No hidden costs. No surprises.&quot;</p>
-                  </div>
-                </div>
-                <p className="text-gray-500 text-base leading-relaxed">
-                  Just clear, honest pricing that helps you plan better and grow faster.
-                </p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-[#979db5]">Billing Dashboard</p>
               </div>
 
-              {/* Decorative Circle */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cosmos/10 rounded-full blur-[100px] z-0 opacity-50 group-hover:opacity-100 transition-opacity" />
+              {/* Mockup Content */}
+              <div className="p-8 flex-1 flex flex-col">
+                <div className="mb-8">
+                  <h3 className="text-2xl font-black text-[#20294c] tracking-tight mb-2">Transparent Financials.</h3>
+                  <p className="text-[#676b89] text-sm font-medium">Zero hidden line-items.</p>
+                </div>
+
+                {/* Simulated Invoice Items */}
+                <div className="space-y-3 mb-8 flex-1">
+                  {[
+                    { label: "Frontend Architecture", amount: "$4,500" },
+                    { label: "Backend API Integration", amount: "$3,200" },
+                    { label: "Edge Deployment", amount: "$850" }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-[#f8f9fc] border border-[#f0f1f5] group-hover:border-[#459af8]/30 transition-colors">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center">
+                          <div className="w-3 h-3 rounded-full bg-[#459af8]" />
+                        </div>
+                        <span className="text-xs font-bold text-[#20294c]">{item.label}</span>
+                      </div>
+                      <span className="text-xs font-black text-[#676b89]">{item.amount}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Total & Action */}
+                <div className="pt-6 border-t border-[#f0f1f5] flex items-end justify-between mt-auto">
+                  <div>
+                    <p className="text-[10px] font-black text-[#979db5] uppercase tracking-widest mb-1">Total Milestone</p>
+                    <p className="text-xl font-black text-[#20294c]">$8,550</p>
+                  </div>
+                  <a
+                    href="#contact"
+                    className="w-10 h-10 rounded-full bg-[#20294c] text-white flex items-center justify-center hover:bg-[#459af8] transition-colors hover:scale-110 shadow-lg"
+                  >
+                    <ArrowRight size={16} />
+                  </a>
+                </div>
+              </div>
             </motion.div>
           </div>
+
         </div>
+
+        {/* Culture / Doodle Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-16 md:mt-24 bg-white rounded-[32px] p-8 md:p-12 border border-[#f0f1f5] shadow-[0_8px_30px_rgba(32,41,76,0.04)] relative overflow-hidden flex flex-col items-center justify-center"
+        >
+           <div className="relative w-full max-w-4xl aspect-square md:aspect-[4/3]">
+             <Image 
+               src="/welancer-doodle.png" 
+               alt="Welancer Developer Culture Doodle" 
+               fill 
+               className="object-contain mix-blend-multiply opacity-95" 
+               priority
+             />
+           </div>
+        </motion.div>
       </div>
     </section>
   );

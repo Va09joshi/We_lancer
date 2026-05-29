@@ -2,71 +2,105 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
-
-const testimonials = [
-  {
-    name: "Alex Rivera",
-    role: "CEO at TechFlow",
-    text: "we_lancer transformed our vision into a reality. Their attention to detail and performance optimization is unmatched.",
-    rating: 5,
-  },
-  {
-    name: "Sarah Chen",
-    role: "Founder of Bloom",
-    text: "The AI automation they built for us saved us over 20 hours a week. Truly a game-changer for our operations.",
-    rating: 5,
-  },
-  {
-    name: "Marcus Thorne",
-    role: "Product Lead at Nexus",
-    text: "Fast delivery, clean code, and a stunning UI. They are our go-to partner for all things digital.",
-    rating: 5,
-  },
-];
+import { TestimonialsCarousel } from "@/components/ui/testimonials-carousel";
 
 const Testimonials = () => {
   return (
-    <section id="testimonials" className="section-padding bg-slate-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-900 tracking-tight">Client Success Stories</h2>
-          <p className="text-slate-500 max-w-xl mx-auto text-lg">
-            Don&apos;t just take our word for it. Here&apos;s what our partners have to say about working with us.
-          </p>
+    <section
+      id="testimonials"
+      className="section-padding relative overflow-hidden"
+      style={{ background: "#ffffff" }}
+    >
+      <div className="max-w-7xl mx-auto relative z-10">
+
+        {/* Header */}
+        <div className="text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="mb-6 flex justify-center"
+          >
+            <span className="btn-pill inline-flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#459af8] animate-pulse" />
+              CLIENT STORIES
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-6xl font-black text-[#20294c] leading-[0.95] mb-6"
+            style={{ letterSpacing: "-0.04em" }}
+          >
+            Trusted by builders <br />
+            <span className="text-gradient">around the world.</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-[#676b89] text-lg max-w-lg mx-auto leading-relaxed font-medium"
+          >
+            Don&apos;t just take our word for it. Here&apos;s what our partners say about working with us.
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((t, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white p-10 rounded-[2.5rem] relative shadow-xl shadow-slate-200/40 border border-slate-100"
+        {/* Carousel */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15 }}
+          className="relative"
+          style={{
+            background: "#f0f1f5",
+            borderRadius: "24px",
+            padding: "48px 24px",
+            boxShadow: "rgba(32, 41, 76, 0.07) 0px 4px 11px 0px, rgba(32, 41, 76, 0.12) 0px 1px 3px 0px",
+          }}
+        >
+          <TestimonialsCarousel />
+        </motion.div>
+
+        {/* Trust indicators */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="mt-12 flex flex-wrap justify-center gap-6"
+        >
+          {[
+            { metric: "150+", label: "Global Clients" },
+            { metric: "98%", label: "Satisfaction Rate" },
+            { metric: "350+", label: "Projects Shipped" },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="text-center px-6 py-4 rounded-[12px]"
+              style={{
+                background: "#ffffff",
+                border: "1px solid #dddfe9",
+                boxShadow: "rgba(32, 41, 76, 0.07) 0px 4px 11px 0px",
+              }}
             >
-              <Quote className="absolute top-8 right-10 text-cosmos/5 w-16 h-16" />
-              <div className="flex gap-1 mb-6">
-                {[...Array(t.rating)].map((_, i) => (
-                  <Star key={i} size={18} className="fill-cosmos text-cosmos" />
-                ))}
-              </div>
-              <p className="text-slate-600 italic mb-10 leading-relaxed text-lg">
-                &quot;{t.text}&quot;
+              <p
+                className="text-2xl font-black text-[#20294c]"
+                style={{ letterSpacing: "-0.04em" }}
+              >
+                {item.metric}
               </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-cosmos to-[#043d2c] text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg shadow-cosmos/20 flex-shrink-0">
-                  {t.name.split(' ').map((n) => n[0]).join('')}
-                </div>
-                <div>
-                  <h4 className="font-bold text-slate-900">{t.name}</h4>
-                  <p className="text-sm text-slate-400 font-medium">{t.role}</p>
-                </div>
-              </div>
-            </motion.div>
+              <p className="text-[10px] font-mono text-[#979db5] uppercase tracking-widest mt-1">
+                {item.label}
+              </p>
+            </div>
           ))}
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );

@@ -47,7 +47,7 @@ const About = () => {
             <p className="text-slate-500 text-lg mb-10 leading-relaxed max-w-lg">
               We are a team of dedicated creators, developers, and strategists. Our mission is to bridge the gap between complex technology and intuitive user experiences.
             </p>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
               {stats.map((stat, i) => (
                 <div key={i} className="bg-slate-50 p-6 rounded-[1.5rem] text-center border border-slate-100 shadow-sm">
